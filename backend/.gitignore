@@ -35,6 +35,7 @@ build/
 ### Security / Secrets ###
 .env
 .env.*
+application.properties
 application-*.properties
 !application.properties.example
 *.keystore
