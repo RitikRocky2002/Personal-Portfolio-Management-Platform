@@ -1,45 +1,28 @@
-package com.backend.entity;
+package com.backend.dto;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
-@Entity
-public class Project {
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+public class ProjectDTO {
+
 	private Long id;
+	@NotBlank(message = "Title should not be empty!")
 	private String title;
+	@Size(max = 500, message = "Description must be at most 500 characters")
 	private String description;
+	@Pattern(regexp = "^(https?://).+$", message = "Thumbnail URL must be a valid URL")
 	private String thumbnailUrl;
+	@Pattern(regexp = "^(https?://).+$", message = "Live Demo URL must be a valid URL")
 	private String liveDemoUrl;
+	@Pattern(regexp = "^(https?://).+$", message = "Source Demo URL must be a valid URL")
 	private String sourceDemoUrl;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "client_id")
-	private Client client;
+	@NotNull
+	private Long clientId;
 	private LocalDateTime createdAt;
-
-	public Project() {
-
-	}
-
-	public Project(Long id, String title, String description, String thumbnailUrl, String liveDemoUrl,
-			String sourceDemoUrl, Client client, LocalDateTime createdAt) {
-		this.id = id;
-		this.title = title;
-		this.description = description;
-		this.thumbnailUrl = thumbnailUrl;
-		this.liveDemoUrl = liveDemoUrl;
-		this.sourceDemoUrl = sourceDemoUrl;
-		this.client = client;
-		this.createdAt = createdAt;
-	}
 
 	public Long getId() {
 		return id;
@@ -89,12 +72,12 @@ public class Project {
 		this.sourceDemoUrl = sourceDemoUrl;
 	}
 
-	public Client getClient() {
-		return client;
+	public Long getClientId() {
+		return clientId;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setClientId(Long clientId) {
+		this.clientId = clientId;
 	}
 
 	public LocalDateTime getCreatedAt() {

@@ -14,7 +14,7 @@ public class ClientDTO {
 	private String description;
 	@Pattern(regexp = "^(https?://).+$", message = "Logo URL must be a valid URL")
 	private String logoUrl;
-	@Pattern(regexp = "^(https?://)?(www\\.)?[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})+(/.*)?$", message = "Website must be a valid URL")
+	@Pattern(regexp = "^(https?://).+$", message = "Website must be a valid URL")
 	private String websiteUrl;
 	private LocalDateTime createdAt;
 

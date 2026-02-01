@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-	@ExceptionHandler({ NoSuchElementException.class, ClientException.class })
+	@ExceptionHandler({ NoSuchElementException.class, ClientException.class, ProjectException.class })
 	public ResponseEntity<ErrorInfo> exceptionHandler(Exception ex) {
-		ErrorInfo error = new ErrorInfo(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value(),
-				LocalDateTime.now());
+		ErrorInfo error = new ErrorInfo(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value(), LocalDateTime.now());
 
 		return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
